@@ -1,0 +1,157 @@
+$main-color: #ff7f50;
+
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: sans-serif;
+    outline: none;
+
+    accent-color: $main-color;
+}
+
+
+::selection {
+    background-color: $main-color;   
+    color: white;    
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    height: 100vh;
+    background-color: #f9f7f8;
+}
+
+
+.container {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 65%;
+    width: 55%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    display: flex;
+
+
+    .left,
+    .right {
+        overflow: hidden;
+        min-width: 50%;
+        height: 100%;
+    }
+
+
+    .left {
+        background: linear-gradient(45deg, $main-color, #942700);
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 70px;
+        font-weight: bold;
+
+        >div {
+            // background-color: red;
+            width: min-content;
+        }
+    }
+
+
+    .right {
+        padding: 80px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .form-container {
+            width: 100%;
+
+            .title {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 16px;
+            }
+
+            .fs-12 {
+                font-size: 12px;
+                color: grey;
+                margin-bottom: 3rem;
+            }
+
+
+            form {
+                margin-bottom: 1.5rem;
+
+                .field {
+                    margin-bottom: 1rem;
+                    display: flex;
+                    flex-direction: column;
+
+
+                    label {
+                        color: grey;
+                        font-size: 14px;
+                        margin-bottom: 8px;
+                    }
+
+                    input {
+                        padding: 12px 15px;
+                        border: 1px solid #bbb;
+                        border-radius: 3px;
+
+                        &:focus {
+                            border-color: $main-color;
+                        }
+                    }
+
+                }
+
+
+                .btn-submit {
+                    padding: 12px 15px;
+                    color: white;
+                    width: 100%;
+                    border: none;
+                    border-radius: 3px;
+                    background-color: $main-color;
+                    cursor: pointer;
+                    transition: .2s ease-in-out;
+
+
+                    &:hover {
+                        background-color: rgb(221, 59, 0);
+                    }
+                }
+            }
+
+
+            .error-message {
+                color: red;
+                margin-bottom: 1.5rem;
+            }
+
+            .sign {
+                color: grey;
+                font-size: 14px;
+
+                a {
+                    color: $main-color;
+                }
+
+            }
+
+        }
+    }
+}

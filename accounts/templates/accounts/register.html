@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/message.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="left">
+        <div>Welcome to Our Community</div>
+    </div>
+    <div class="right">
+        <div class="form-container">
+            <div class="title">Register</div>
+            <div class="fs-12">Join us by creating a new account.</div>
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="john.doe" id="username" name="username" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="john.doe@example.com" id="email" name="email" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="••••••••" id="password" name="password" required>
+                </div>
+                <div class="field">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" placeholder="••••••••" id="confirm_password" name="confirm_password" required>
+                </div>
+
+                <button class="btn-submit">Register</button>
+            </form>
+            <div class="sign">
+                Already have an account? <a href="{% url 'login' %}">Login</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="messages">
+    {% for msg in messages %}
+        <div class="message" style="--i: {{ forloop.counter0 }}s">{{ msg }}</div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

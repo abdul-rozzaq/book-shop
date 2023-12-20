@@ -1,706 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-
-<body>
+{% block content %}
 
 
-    <nav class="fixed" id="nav">
-        <div class="container">
-            <div class="logo"><span>Sea</span> Books</div>
-
-            <ul class="menu">
-                <li>
-                    <a href="#">offers</a>
-                    <div class="btm-hr"></div>
-                </li>
-                <li>
-                    <a href="#">top selling</a>
-                    <div class="btm-hr"></div>
-                </li>
-                <li>
-                    <a href="#">authors</a>
-                    <div class="btm-hr"></div>
-                </li>
-            </ul>
-
-
-            <div class="right">
-                <div class="sign-up">Create account</div>
-                <div class="open-card">x</div>
+<div class="main-container">
+    <div class="wrapper">
+        <div class="filter-side">
+            <div class="row">
+                <div class="title">Genres</div>
             </div>
         </div>
-    </nav>
+        <div class="books">
 
-    <nav>
-        <div class="container">
-            <div class="logo"><span>Sea</span> Books</div>
+            {% for book in books %}
+            <div class="book">
+                <a href="{% url 'detail' book.pk %}" class="book">
 
-            <ul class="menu">
-                
-            </ul>
-
-
-            <div class="right">
-                <div class="sign-up">Create account</div>
-                <div class="open-card">x</div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- <div class="search-panel">
-        <div class="container">
-            <div class="fs-20">Search</div>
-            <form class="search-bar" method="get">
-                <select name="genre" class="f-grow-1">
-                    <option value="">genre</option>
-                    <option value="art">art</option>
-                    <option value="horror">horror</option>
-                    <option value="comedy">comedy</option>
-                    <option value="romance">romance</option>
-                    <option value="fantasy">fantasy</option>
-                </select>
-                <div class="hr"></div>
-                <select name="year" class="f-grow-1">
-                    <option value="">year</option>
-                    <option value="1995">1995</option>
-                    <option value="2000">2000</option>
-                    <option value="2001">2001</option>
-                    <option value="2006">2006</option>
-                    <option value="2010">2010</option>
-                </select>
-                <div class="hr"></div>
-                <input type="text" placeholder="Title" name="title" class="f-grow-4">
-                <button class="f-grow-1">Search</button>
-            </form>
-        </div>
-    </div> -->
-
-    <div class="main-container">
-        <div class="wrapper">
-            <div class="filter-side">
-                <div class="row">
-                    <div class="title">Genres</div>
-                </div>
-            </div>
-            <div class="books">
-                <div class="book">
                     <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
+                        <div class="badges">
+
+                            {% for badge in book.badge.all %}
+
+                            <div class="badge">
+                                {{badge.title}}
+                            </div>
+
+                            {% endfor %}
+
+                            {% if book.discount.all %}
+                            <div class="badge">
+                                discount
+                            </div>
+                            {% endif %}
+
+                        </div>
+                        <img src="{{ book.image.url }}" alt="">
                         <div class="content">
-                            <div class="name">Hamsa</div>
+
+                            <div class="name">{{ book.title }}</div>
                             <div class="row">
 
                                 <div class="price">
+                                    {% if book.discount.all %}
                                     <div class="new">
-                                        $18.9
+                                        ${{ book.discount.all.0.new_price }}
                                     </div>
 
                                     <div class="old">
-                                        $20.5
+                                        ${{ book.price }}
                                     </div>
+                                    {% else %}
+                                    <div class="new">
+                                        ${{ book.price }}
+                                    </div>
+
+                                    {% endif %}
                                 </div>
 
                                 <div class="author">
-                                    Alisher Navoiy
+                                    {{ book.author.name }}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
+                </a>
+                <div class="rating">
+                    {{ book.rating | safe }}
                 </div>
-
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-                <div class="book">
-                    <div class="book-inner">
-                        <img src="./images/01.jpeg" alt="">
-                        <div class="content">
-                            <div class="name">The Mesh</div>
-                            <div class="row">
-
-                                <div class="price">
-                                    <div class="new">
-                                        $18.9
-                                    </div>
-
-                                    <div class="old">
-                                        $20.5
-                                    </div>
-                                </div>
-
-                                <div class="author">
-                                    Alisher Navoiy
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rating">
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                        <div class="rate">&#9733;</div>
-                    </div>
-                    <div class="button">Add to card</div>
-                </div>
-
-
+                <a href="/accounts/" class="button">Add to cart</a>
 
             </div>
+
+            {% endfor %}
+
         </div>
     </div>
+</div>
 
-    <h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia magni vero consequatur modi cum rem quis corrupti
-        eaque fugiat! Vitae ipsum iusto neque asperiores, a nisi pariatur quo culpa consequuntur saepe quas minima
-        libero eius earum iste, enim ipsa maiores repellendus voluptate. Nostrum qui magnam est laudantium veritatis,
-        voluptas dolorum totam esse, dolor consequatur voluptatibus corrupti, delectus nesciunt quas inventore deleniti
-        rerum eveniet sit. Aut veritatis, nemo nihil eveniet minima qui quas ipsum sed repudiandae! Numquam deserunt
-        possimus temporibus maxime optio? Alias veniam eveniet, dolores, magni ratione cumque facilis dicta doloribus
-        optio voluptate odio iste delectus iusto hic ducimus quas vero, laudantium voluptatem sit molestiae quos
-        reiciendis! Quae eveniet molestias suscipit deserunt consectetur debitis odit provident laudantium praesentium
-        voluptas harum, possimus assumenda unde aliquam! Eos excepturi dicta laudantium repellat nulla, incidunt neque
-        tempora. Molestias, doloremque autem. Error tempore est expedita pariatur assumenda, culpa, voluptatum doloribus
-        aperiam a nemo modi, dolore animi. Debitis soluta commodi atque facilis pariatur fugit cum explicabo quod
-        placeat quis blanditiis aperiam architecto dolorum inventore a, rem tempore aut. Iusto exercitationem doloremque
-        fuga, consequuntur iure recusandae mollitia laboriosam maiores eum dolorum tempora. Alias vero obcaecati optio
-        assumenda veniam soluta sunt placeat quisquam amet, excepturi possimus dolores illum tempora dolor expedita at
-        culpa nam magni dicta consequatur quaerat beatae molestias fugit. At ipsum ad autem, accusantium hic cum
-        voluptas distinctio eaque voluptate ab laboriosam culpa illo reiciendis quam deleniti mollitia fugiat dolorem
-        quisquam labore porro id nam quas? Assumenda commodi adipisci ut aperiam quisquam qui odit cumque, eum, unde
-        eligendi obcaecati vel consequuntur porro! Veniam nemo sint similique velit doloremque iste voluptas, adipisci
-        veritatis dolorem eos eaque itaque aspernatur, quidem amet molestiae vero debitis magnam iusto, error quae animi
-        tempora. Nesciunt vero deserunt itaque, temporibus esse nisi iusto quos atque, dolor reiciendis cum, quod
-        expedita maiores? Officiis ullam numquam placeat sint quis necessitatibus cumque inventore vitae. Soluta
-        sapiente sunt obcaecati quas aperiam, iste, ea nemo officia enim laborum veritatis nihil nobis accusantium cum
-        necessitatibus praesentium non dolorum laudantium, illum maiores. Quas et officiis, quasi quod amet eveniet
-        suscipit tenetur adipisci sed molestiae. Dicta architecto a, quia commodi sed suscipit fugit! Suscipit officiis
-        minima velit fuga magnam nam iste necessitatibus debitis et quisquam alias ipsam nobis perferendis expedita,
-        praesentium a blanditiis molestias voluptatem illum! Laborum voluptatibus harum ex exercitationem, sint quidem
-        tenetur dignissimos facilis vitae perferendis. Cum maxime nihil tempore exercitationem eum consequatur inventore
-        aut quae optio, in dolorum at itaque asperiores assumenda illo quis reiciendis, minima ea ratione voluptatibus
-        voluptate ipsum! Error vero doloribus quos? Temporibus quia suscipit asperiores molestiae recusandae ipsam! Quis
-        architecto obcaecati maiores atque est aspernatur alias neque ipsam in? Qui doloribus nulla vel deserunt
-        suscipit itaque minus odio, sit doloremque autem repellat labore in nemo nostrum facere voluptas natus!
-        Inventore suscipit qui dolorem animi. Minus sed repellat ab vel voluptatibus repellendus sequi porro minima eos
-        ducimus nam illo assumenda incidunt suscipit, dolorem molestias eveniet provident laborum exercitationem
-        deleniti nihil commodi harum veritatis aut. Soluta quas maxime a voluptates corporis totam illo amet adipisci
-        tempora?
-    </h1>
-    <script src="./js/app.js"></script>
 
-</body>
-
-</html>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/components/book.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    {% block css %}
+
+    {% endblock %}
+</head>
+
+<body>
+    <div class="space"></div>
+
+    <nav id="nav">
+        <div class="container">
+            <a href="/" class="logo"><span>Sea</span> Books</a>
+
+            <form class="search" method="get" id="search-form">
+                <input type="search" placeholder="Search ..." name="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </form>
+
+            <div class="right">
+                {% if request.user.is_authenticated %}
+                <a class="open-cart" href="{% url 'cart' %}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                <div class="profile-menu">
+                    <div class="profile">{{ request.user.username|make_list|first }}</div>
+                    <div class="dropdown">
+                        <div class="menu">Settings</div>
+                        <div class="menu danger">Logout</div>
+                    </div>
+                </div>
+                {% else %}
+                <a class="sign-up" href="{% url 'register' %}">Create account</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+        
+    {% endblock %}
+
+    <footer>
+        this is footer
+    </footer>
+
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+</body>
+
+</html>

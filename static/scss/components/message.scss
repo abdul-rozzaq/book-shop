@@ -1,0 +1,78 @@
+
+
+$duration: 2s;
+
+.messages {
+    width: 30%;
+    position: fixed;
+    right: 5px;
+    top: 5px;
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .message {
+        background-color: #f8d8da;
+        padding: 15px 10px;
+        border: 1px solid red;
+        border-radius: 5px;
+        position: relative;
+        display: inline-block;
+        animation: opacityAnim $duration ease-in-out var(--i)  1 forwards alternate;
+        opacity: 0;
+        transform: translateX(50%);
+
+
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background-color: red;
+            animation: indicator $duration ease-in-out var(--i) 1 forwards alternate;
+
+            border-radius: 5px;
+        }
+    }
+}
+
+
+@keyframes indicator {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0;
+    }
+}
+
+
+
+@keyframes opacityAnim {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateX(0%);
+
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(0%);
+    }
+}

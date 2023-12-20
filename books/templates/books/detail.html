@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+
+<div class="detail-container">
+    <div class="left">
+        <img src="{{ book.image.url }}" alt="">
+    </div>
+    <div class="right">
+        <div class="book-title">
+            {{ book.title }}
+        </div>
+        <div class="book-author">
+            {{ book.author.name }}
+        </div>
+
+        <div class="book-rating">
+            <div class="stars">
+                {{ book.rating | safe}}
+            </div>
+
+            <div class="rating-score">{{ book.get_rating }}</div>
+
+
+            <div class="ratings-count">
+                {{book.reviews.count}} ratings
+            </div>
+        </div>
+
+        <div class="book-description">
+            <div class="text">
+                {{ book.description }}
+            </div>
+            <div class="more-button d-none">Show more</div>
+        </div>
+
+        <div class="hr"></div>
+
+
+        <div class="fw-bold fs-20">About the author</div>
+    </div>
+
+</div>
+
+
+<script>
+    let moreButton = document.querySelector('.more-button')
+    let text = document.querySelector('.book-description .text')
+    
+
+    document.addEventListener('DOMContentLoaded', (e) => {
+        if (text.clientHeight == 150){
+            moreButton.classList.remove('d-none')
+        }
+    })
+
+    moreButton.addEventListener('click', () => {
+        text.style.maxHeight = 'unset';
+        moreButton.classList.add('d-none');
+    })
+
+</script>
+{% endblock %}

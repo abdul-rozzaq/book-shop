@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/message.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="left">
+            <div>Welcome Back</div>
+        </div>
+        <div class="right">
+            <div class="form-container">
+                <div class="title">Login</div>
+                <div class="fs-12">Welcome back! Please login to your <br> account.</div>
+                <form action="" , method="post">{% csrf_token %}
+                    <div class="field">
+                        <label for="username">Username or email</label>
+                        <input type="text" placeholder="john.doe@example.com" id="username" name="username" required>
+                    </div>
+                    <div class="field">
+                        <label for="password">Password</label>
+                        <input type="password" placeholder="••••••••" id="password" name="password" required>
+                    </div>
+
+                    <button class="btn-submit">Login</button>
+                </form>
+                <div class="sign">
+                    New User? <a href="{% url 'register' %}">Sign up</a>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="messages">
+        {% for msg in messages %}
+            <div class="message" style="--i: {{forloop.counter0}}s;">{{ msg }}</div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

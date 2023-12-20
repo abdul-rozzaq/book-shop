@@ -1,0 +1,106 @@
+.detail-container {
+  min-height: 1000px;
+  width: 70%;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.detail-container > div {
+  padding: 10px;
+}
+.detail-container .left {
+  border-radius: 5px;
+  border: 1px solid #d6d9dc;
+  height: fit-content;
+  width: 25%;
+}
+.detail-container .left img {
+  object-fit: cover;
+  width: 100%;
+  height: 450px;
+}
+.detail-container .right {
+  width: 70%;
+  height: fit-content;
+  border: 1px solid #d6d9dc;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.detail-container .right .book-title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.detail-container .right .book-author {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.detail-container .right .book-rating {
+  gap: 20px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.detail-container .right .book-rating .stars {
+  display: flex;
+  gap: 10px;
+}
+.detail-container .right .book-rating .stars .fill {
+  color: coral;
+}
+.detail-container .right .book-rating .ratings-count {
+  font-size: 16px;
+}
+.detail-container .right .book-description {
+  font-size: 14px;
+  letter-spacing: 0.9px;
+  display: flex;
+  flex-direction: column;
+}
+.detail-container .right .book-description .text {
+  overflow: hidden;
+  max-height: 150px;
+  margin-bottom: 5px;
+}
+.detail-container .right .book-description .more-button {
+  position: relative;
+  width: fit-content;
+  cursor: pointer;
+  font-weight: bold;
+}
+.detail-container .right .book-description .more-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  border-radius: 5px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: coral;
+  transition: 0.3s ease-in-out;
+  transform: translateY(100%);
+}
+.detail-container .right .book-description .more-button:hover::after {
+  width: 100%;
+}
+.detail-container .right .book-description .d-none {
+  display: none;
+}
+.detail-container .right .hr {
+  width: 90%;
+  height: 2px;
+  background-color: #d6d9dc;
+  margin: 25px auto;
+}
+.detail-container .right .fs-20 {
+  font-size: 20px;
+}
+.detail-container .right .fw-bold {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=detail.css.map */
