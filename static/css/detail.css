@@ -8,22 +8,20 @@
 }
 .detail-container > div {
   padding: 10px;
+  height: fit-content;
 }
 .detail-container .left {
   border-radius: 5px;
-  border: 1px solid #d6d9dc;
-  height: fit-content;
   width: 25%;
 }
 .detail-container .left img {
   object-fit: cover;
   width: 100%;
   height: 450px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 .detail-container .right {
   width: 70%;
-  height: fit-content;
-  border: 1px solid #d6d9dc;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -49,30 +47,44 @@
   display: flex;
   gap: 10px;
 }
+.detail-container .right .book-rating .stars .rate {
+  color: #ccc;
+}
 .detail-container .right .book-rating .stars .fill {
   color: coral;
 }
 .detail-container .right .book-rating .ratings-count {
   font-size: 16px;
 }
-.detail-container .right .book-description {
+.detail-container .right .description {
   font-size: 14px;
   letter-spacing: 0.9px;
   display: flex;
   flex-direction: column;
 }
-.detail-container .right .book-description .text {
+.detail-container .right .description .text {
   overflow: hidden;
-  max-height: 150px;
+  max-height: 130px;
   margin-bottom: 5px;
+  line-height: 20px;
+  position: relative;
 }
-.detail-container .right .book-description .more-button {
+.detail-container .right .description .text.show::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 15px;
+  background: linear-gradient(rgba(255, 255, 255, 0), #f2f4f7);
+}
+.detail-container .right .description .more-button {
   position: relative;
   width: fit-content;
   cursor: pointer;
   font-weight: bold;
 }
-.detail-container .right .book-description .more-button::after {
+.detail-container .right .description .more-button::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -84,10 +96,10 @@
   transition: 0.3s ease-in-out;
   transform: translateY(100%);
 }
-.detail-container .right .book-description .more-button:hover::after {
+.detail-container .right .description .more-button:hover::after {
   width: 100%;
 }
-.detail-container .right .book-description .d-none {
+.detail-container .right .description .d-none {
   display: none;
 }
 .detail-container .right .hr {
@@ -101,6 +113,74 @@
 }
 .detail-container .right .fw-bold {
   font-weight: bold;
+}
+.detail-container .right .mb-16 {
+  margin-bottom: 16px;
+}
+.detail-container .right .row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.detail-container .right .row .img {
+  width: 75px;
+  height: 75px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.detail-container .right .row .img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.detail-container .right .row .data {
+  flex-grow: 1;
+  font-size: 15px;
+  font-weight: bold;
+}
+.detail-container .right .row .follow-btn {
+  background-color: black;
+  color: white;
+  padding: 7px 15px;
+  border-radius: 50px;
+}
+.detail-container .right .rating-stat {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 5px;
+}
+.detail-container .right .rating-stat .row {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.detail-container .right .rating-stat .row .col:first-child {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.detail-container .right .rating-stat .row .col:last-child {
+  color: #999;
+  font-size: 14px;
+}
+.detail-container .right .rating-stat .row .col.expanded {
+  width: 550px;
+  padding: 10px;
+}
+.detail-container .right .rating-stat .row .col.expanded .line {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 50px;
+}
+.detail-container .right .rating-stat .row .col.expanded .line .indicator {
+  width: var(--width);
+  height: 15px;
+  background-color: coral;
+  border-radius: inherit;
+}
+.detail-container .right .rating-stat .row .col {
+  min-width: 65px;
 }
 
 /*# sourceMappingURL=detail.css.map */

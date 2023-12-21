@@ -203,6 +203,7 @@ nav {
                     transition: .3s ease-in-out;
                     border-radius: 5px;
                     overflow: hidden;
+                    border: 1px solid $border-color;
 
                     .menu {
                         cursor: pointer;
@@ -211,7 +212,7 @@ nav {
                         font-size: 14px;
 
                         &.danger {
-                            background-color: #dc3545;
+                            background-color: red;
                             color: white;
 
                             &:hover {

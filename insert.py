@@ -71,10 +71,10 @@ for book in Book.objects.all():
 
 user_ids = [x.pk for x in User.objects.all().order_by('?')]
 
-for book in Book.objects.all():
-    etx = fake.text(max_nb_chars=1000)
+for book in Author.objects.all():
+    # etx = fake.text(max_nb_chars=1000)
     
-    book.description += etx
+    book.bio = book.bio[0: int(len(book.bio) / 2)]
     
     book.save()
     

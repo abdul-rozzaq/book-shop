@@ -161,6 +161,7 @@ nav .container .right .profile-menu .dropdown {
   transition: 0.3s ease-in-out;
   border-radius: 5px;
   overflow: hidden;
+  border: 1px solid #d6d9dc;
 }
 nav .container .right .profile-menu .dropdown .menu {
   cursor: pointer;
@@ -169,7 +170,7 @@ nav .container .right .profile-menu .dropdown .menu {
   font-size: 14px;
 }
 nav .container .right .profile-menu .dropdown .menu.danger {
-  background-color: #dc3545;
+  background-color: red;
   color: white;
 }
 nav .container .right .profile-menu .dropdown .menu.danger:hover {

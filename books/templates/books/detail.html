@@ -34,36 +34,92 @@
             </div>
         </div>
 
-        <div class="book-description">
-            <div class="text">
+        <div class="description">
+            <div class="text show" id="book-description">
                 {{ book.description }}
             </div>
-            <div class="more-button d-none">Show more</div>
+            <div class="more-button d-none" data-target-id="book-description">Show more</div>
         </div>
 
         <div class="hr"></div>
 
 
-        <div class="fw-bold fs-20">About the author</div>
+        <div class="fw-bold fs-20 mb-16">About the author</div>
+
+        <div class="row mb-16">
+            <div class="img">
+                <img src="{{ book.author.image.url }}" alt="">
+            </div>
+
+            <div class="data">
+                {{ book.author.name }}
+            </div>
+
+            <div class="follow-btn">Follow</div>
+        </div>
+
+        <div class="description">
+            <div class="text show" id="author-bio">
+                {{ book.author.bio }}
+            </div>
+            <div class="more-button d-none" data-target-id="author-bio">Show more</div>
+        </div>
+
+
+        <div class="hr"></div>
+        <div class="fw-bold fs-20 mb-16">Ratings and reviews</div>
+        <div class="book-rating">
+            <div class="stars">
+                {{ book.rating | safe}}
+            </div>
+
+            <div class="rating-score">{{ book.get_rating }}</div>
+
+
+            <div class="ratings-count">
+                {{book.reviews.count}} ratings
+            </div>
+        </div>
+
+        <div class="rating-stat">
+            {% for r in book.rating_stats %}
+                <div class="row">
+                    <div class="col">
+                        {{ forloop.counter }} {% if forloop.counter == 1 %} star {% else %} stars {% endif %} 
+                    </div>
+                    <div class="col expanded">
+                        <div class="line">
+                            <div class="indicator" style="--width: {{ r.percent }}%"></div>
+                        </div>
+                    </div>
+                    <div class="col">{{ r.count }} ({{ r.percent }} %)</div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
 </div>
 
 
 <script>
-    let moreButton = document.querySelector('.more-button')
-    let text = document.querySelector('.book-description .text')
-    
+    let moreButtons = document.querySelectorAll('.more-button')
 
     document.addEventListener('DOMContentLoaded', (e) => {
-        if (text.clientHeight == 150){
-            moreButton.classList.remove('d-none')
-        }
-    })
+        moreButtons.forEach((e) => {
+            let target = document.getElementById(e.getAttribute('data-target-id'))
 
-    moreButton.addEventListener('click', () => {
-        text.style.maxHeight = 'unset';
-        moreButton.classList.add('d-none');
+            if (target.clientHeight == 130) {
+                e.classList.remove('d-none')
+            }
+            
+            e.addEventListener('click', () => {
+                target.style.maxHeight = 'unset';
+                target.classList.remove('show')
+
+
+                e.classList.add('d-none');
+            })
+        })
     })
 
 </script>

@@ -3,13 +3,12 @@ from accounts.models import User
 
 
 class Author(models.Model):
+    image = models.ImageField(upload_to='autor_image/')
     name = models.CharField(max_length=255)
     bio = models.TextField()
 
     def __str__(self):
         return self.name
-    
-    
     
     
 class Book(models.Model):
@@ -35,8 +34,22 @@ class Book(models.Model):
 
     def rating(self):
         yellows = ['<div class="rate fill">&#9733;</div>' for x in range(int(self.get_rating()))]
-        greys = ['<div class="rate">&#9734;</div>' for x in range(5 - int(self.get_rating()))]
+        greys = ['<div class="rate">&#9733;</div>' for x in range(5 - int(self.get_rating()))]
         return ''.join(yellows) + ''.join(greys)
+
+    def rating_stats(self):
+        def get(rating) -> dict:
+            
+            filtered = self.reviews.filter(rating=rating)
+
+            return {
+                'count': len(filtered),
+                'percent': round(len(filtered)  / (len(self.reviews.all()) / 100), 1) if len(filtered) > 0 else 0,
+            }
+        
+        
+        return [get(x) for x in range(1, 6)]
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=100)
