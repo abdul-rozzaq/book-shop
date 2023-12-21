@@ -1,0 +1,51 @@
+.cart-container {
+  display: flex;
+  gap: 10px;
+  min-height: 700px;
+  width: 80%;
+  margin: 50px auto;
+}
+.cart-container > div {
+  height: -moz-fit-content;
+  border: 1px solid #d6d9dc;
+  padding: 10px;
+}
+.cart-container .left {
+  width: 30%;
+  height: fit-content;
+  background-color: red;
+}
+.cart-container .right {
+  width: 70%;
+  background-color: coral;
+  display: grid;
+  /* flex-direction: column; */
+  gap: 10px;
+
+  grid-template-columns: repeat(2, auto);
+}
+
+
+.cart-container .right .card {
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #d6d9dc;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+
+
+.cart-container .right .card .col img {
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.cart-container .right .card .col .title {
+  font-size: 25px;
+  font-weight: bold;
+
+}

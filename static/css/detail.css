@@ -13,12 +13,34 @@
 .detail-container .left {
   border-radius: 5px;
   width: 25%;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  flex-direction: column;
+  gap: 15px;
+  top: 80px;
 }
 .detail-container .left img {
   object-fit: cover;
   width: 100%;
   height: 450px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border-radius: 0px 10px 10px 0px;
+}
+.detail-container .left .add-to-cart {
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
+  color: #da501e;
+  border: 2px solid #da501e;
+  padding: 10px 0px;
+  width: 100%;
+  border-radius: 50px;
+  text-align: center;
+}
+.detail-container .left .add-to-cart:hover {
+  cursor: pointer;
+  background-color: #da501e;
+  color: white;
 }
 .detail-container .right {
   width: 70%;
@@ -55,6 +77,7 @@
 }
 .detail-container .right .book-rating .ratings-count {
   font-size: 16px;
+  color: #999;
 }
 .detail-container .right .description {
   font-size: 14px;
@@ -103,8 +126,8 @@
   display: none;
 }
 .detail-container .right .hr {
-  width: 90%;
-  height: 2px;
+  width: 100%;
+  height: 1px;
   background-color: #d6d9dc;
   margin: 25px auto;
 }
@@ -145,6 +168,7 @@
   color: white;
   padding: 7px 15px;
   border-radius: 50px;
+  font-size: 14px;
 }
 .detail-container .right .rating-stat {
   display: flex;
@@ -156,22 +180,42 @@
   align-items: center;
   justify-content: start;
 }
-.detail-container .right .rating-stat .row .col:first-child {
+.detail-container .right .rating-stat .row:hover .col:first-child .fs::after {
+  width: 100%;
+}
+.detail-container .right .rating-stat .row:hover .col:last-child {
+  color: black;
+}
+.detail-container .right .rating-stat .row .col:first-child .fs {
   font-weight: bold;
-  text-decoration: underline;
+  position: relative;
+  width: fit-content;
+}
+.detail-container .right .rating-stat .row .col:first-child .fs::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background-color: #ff7f50;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  left: 0;
+  transition: 0.3s ease-in-out;
 }
 .detail-container .right .rating-stat .row .col:last-child {
   color: #999;
+  transition: 0.3s ease-in-out;
   font-size: 14px;
 }
 .detail-container .right .rating-stat .row .col.expanded {
   width: 550px;
   padding: 10px;
+  border-radius: 50px;
 }
 .detail-container .right .rating-stat .row .col.expanded .line {
   width: 100%;
   background-color: #ddd;
-  border-radius: 50px;
+  border-radius: inherit;
 }
 .detail-container .right .rating-stat .row .col.expanded .line .indicator {
   width: var(--width);

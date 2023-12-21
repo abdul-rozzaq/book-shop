@@ -13,7 +13,12 @@ def home_page(request):
 
 
 def cart_page(request):
-    context = {}
+
+    queryset = Book.objects.all()
+
+    context = {
+        'books': queryset[0: 5]
+    }
     return render(request, 'cart.html', context)
 
 

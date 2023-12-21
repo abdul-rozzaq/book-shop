@@ -1,0 +1,38 @@
+
+
+
+
+
+.cart-container {
+    display: flex;
+    gap: 10px;
+    min-height: 500px;
+
+    width: 70%;
+    margin: 50px auto;
+
+
+    > div {
+        height: fit-content;
+        border: 1px solid #d6d9dc;
+
+        padding: 10px;
+    }
+
+
+    .left {
+        width: 30%;
+
+
+        background-color: red;
+    }
+
+    .right {
+        width: 70%;
+        background-color: coral;
+
+    }
+}
+
+
+

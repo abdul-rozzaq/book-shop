@@ -9,6 +9,11 @@
   accent-color: #ff7f50;
 }
 
+::-moz-selection {
+  background-color: #ff7f50;
+  color: white;
+}
+
 ::selection {
   background-color: #ff7f50;
   color: white;
@@ -48,6 +53,7 @@ body {
   font-weight: bold;
 }
 .container .left > div {
+  width: -moz-min-content;
   width: min-content;
 }
 .container .right {
@@ -113,6 +119,4 @@ body {
 }
 .container .right .form-container .sign a {
   color: #ff7f50;
-}
-
-/*# sourceMappingURL=auth.css.map */
+}/*# sourceMappingURL=auth.css.map */

@@ -12,6 +12,10 @@
 <div class="detail-container">
     <div class="left">
         <img src="{{ book.image.url }}" alt="">
+        <div class="add-to-cart">
+            Add to cart
+        </div>
+        
     </div>
     <div class="right">
         <div class="book-title">
@@ -25,7 +29,6 @@
             <div class="stars">
                 {{ book.rating | safe}}
             </div>
-
             <div class="rating-score">{{ book.get_rating }}</div>
 
 
@@ -85,7 +88,9 @@
             {% for r in book.rating_stats %}
                 <div class="row">
                     <div class="col">
-                        {{ forloop.counter }} {% if forloop.counter == 1 %} star {% else %} stars {% endif %} 
+                        <div class="fs">
+                            {{ forloop.counter }} {% if forloop.counter == 1 %} star {% else %} stars {% endif %} 
+                        </div>
                     </div>
                     <div class="col expanded">
                         <div class="line">
@@ -110,6 +115,8 @@
 
             if (target.clientHeight == 130) {
                 e.classList.remove('d-none')
+            } else {
+                target.classList.remove('show')
             }
             
             e.addEventListener('click', () => {

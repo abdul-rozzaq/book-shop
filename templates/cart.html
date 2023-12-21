@@ -1,7 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}{% load static %}
 
 
+{% block css %}
+    <link rel="stylesheet" href="{%  static 'css/cart.css' %}">
+{% endblock css %}
 
 {% block content %}
-<h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur dolorem tempore nostrum? Rerum laudantium sapiente libero vitae est veritatis nulla, ipsa ullam qui, ipsam debitis at expedita veniam officia nostrum.</h1>
+
+    <div class="cart-container">
+
+        <div class="left">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam impedit, saepe illum possimus, distinctio obcaecati velit dolor recusandae, quis dolore numquam optio aliquid dicta aliquam animi. Necessitatibus neque vel illo!
+        </div>
+
+        <div class="right">
+            {% for book in books %}
+                <div class="card">
+                    <div class="col">
+                        <img src="{{ book.image.url }}" alt="">
+                    </div>
+                    <div class="col">
+                        <div class="title">{{ book.title }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
 {% endblock %}

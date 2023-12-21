@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
 
 
 $main-color: #ff7f50;
@@ -204,6 +204,10 @@ nav {
                     border-radius: 5px;
                     overflow: hidden;
                     border: 1px solid $border-color;
+
+                    display: flex;
+                    flex-direction: column;
+
 
                     .menu {
                         cursor: pointer;

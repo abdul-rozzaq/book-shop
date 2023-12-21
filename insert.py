@@ -11,7 +11,7 @@ django.setup()
 
 from books.models import *
 
-from faker import Faker
+# from faker import Faker
 import random
 
 # def insert(model, data: list[dict]):
@@ -19,10 +19,10 @@ import random
 #         model.objects.create(**i)
         
         
+"""
 fake = Faker()
 
 
-"""
 books = []
 
 
@@ -49,6 +49,9 @@ for book in Book.objects.all():
     book.save()
 
 
+"""
+
+from PIL import Image
 
 def get_files_in_directory(directory_path):
     file_list = []
@@ -59,16 +62,26 @@ def get_files_in_directory(directory_path):
     return file_list
 
 directory_path = './media/book_image/'
+new_directory_path = './media/new_book_image/'
 files = get_files_in_directory(directory_path)
 
 
+
+for x in files:
+    
+    image = Image.open(directory_path + x)
+
+    new_image = image.resize([int(x * .5) for x in image.size])
+
+    new_image.save(new_directory_path + x)
+
+
+"""
 for book in Book.objects.all():
     book.title = fake.first_name()
     book.image = '/book_image/' + random.choice(files)
     book.save()
     
-"""
-
 user_ids = [x.pk for x in User.objects.all().order_by('?')]
 
 for book in Author.objects.all():
@@ -88,3 +101,4 @@ for book in Author.objects.all():
     #     }
         
     #     Review.objects.create(**data)
+"""
